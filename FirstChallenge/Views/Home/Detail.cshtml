@@ -1,0 +1,18 @@
+﻿@model FirstChallenge.Models.ComicBook
+
+@{
+    var title = String.Format("Details About {0} #{1}", Model.ComicTitle, Model.EpisodeNumber);
+    ViewBag.Title = "Detail";
+}
+
+<h2>@title</h2>
+<h4>Episode Title: @Model.EpisodeTitle</h4>
+
+@{
+    var heroes = Model.Characters.Select(x => x.Name).ToArray(); //LINQ expression to select the names of the characters and to assign to an array
+    var heroesString = String.Join(", ", heroes); //this takes takes the string values from the array and concatenates them
+    <p><strong>Starring:</strong> @heroesString</p>
+}
+
+<hr/>
+@Html.ActionLink("Back to All Comics", "Index")
